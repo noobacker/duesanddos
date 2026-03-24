@@ -1,0 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-plus-jakarta: "Plus Jakarta Sans", sans-serif;
+  --font-fraunces: "Fraunces", serif;
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-stone-50 text-stone-900 antialiased;
+  font-family: var(--font-plus-jakarta);
+}
+
+/* ── Keyframes ──────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-down {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+/* ── Animation utility classes ──────────────────────── */
+@layer utilities {
+  .animate-fade-in   { animation: fade-in  200ms var(--ease-smooth) both; }
+  .animate-fade-up   { animation: fade-up  250ms var(--ease-smooth) both; }
+  .animate-fade-down { animation: fade-down 200ms var(--ease-smooth) both; }
+  .animate-scale-in  { animation: scale-in 200ms var(--ease-spring) both; }
+  .animate-slide-left{ animation: slide-in-left 200ms var(--ease-smooth) both; }
+  .animate-pop       { animation: pop 300ms var(--ease-spring); }
+
+  /* Stagger delays for lists */
+  .anim-delay-50  { animation-delay: 50ms; }
+  .anim-delay-100 { animation-delay: 100ms; }
+  .anim-delay-150 { animation-delay: 150ms; }
+  .anim-delay-200 { animation-delay: 200ms; }
+}
+
+/* ── Component classes ──────────────────────────────── */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white
+           transition-all duration-200 hover:bg-brand-700 hover:shadow-lg hover:shadow-brand-600/20
+           hover:-translate-y-px active:scale-[0.97] active:translate-y-0
+           disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-stone-200 bg-white px-6 py-3 text-sm font-medium text-stone-700
+           transition-all duration-200 hover:border-stone-300 hover:bg-stone-50 hover:-translate-y-px active:scale-[0.97] active:translate-y-0;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3 text-sm font-semibold text-white
+           transition-all duration-200 hover:bg-red-700 hover:-translate-y-px active:scale-[0.97]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm text-stone-900 placeholder:text-stone-400
+           transition-all duration-200 outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/10 disabled:opacity-50;
+  }
+
+  .input-error {
+    @apply border-red-300 focus:border-red-400 focus:ring-red-400/10;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-stone-700 mb-1.5;
+  }
+
+  .error-text {
+    @apply text-xs text-red-500 mt-1.5;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-stone-100 shadow-sm
+           transition-shadow duration-200;
+  }
+}
+
+/* ── Animations OFF mode ──────────────────────────────
+   When body has class "no-animations", disable ALL
+   transitions and animations sitewide instantly.        */
+body.no-animations *,
+body.no-animations *::before,
+body.no-animations *::after {
+  animation-duration: 0ms !important;
+  animation-delay: 0ms !important;
+  transition-duration: 0ms !important;
+  transition-delay: 0ms !important;
+}
+
+/* ── Font display helper ─────────────────────────────── */
+.font-display {
+  font-family: var(--font-fraunces);
+}
+
+/* ── Custom scrollbar ────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { @apply bg-stone-300 rounded-full; }
