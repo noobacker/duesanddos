@@ -1,6 +1,3 @@
-MAJOR CHANGES TO MAKE IT WORK :
-- PostGreSQL  DB deleted - so craete new DB and run migrations
-
 For Next.js: Make sure you open a terminal, cd frontend, and then run npm run dev
 For Django / Python: Open a terminal, cd backend, then run source .venv/bin/activate, and then run your python server
 --> python manage.py runserver or script commands.
