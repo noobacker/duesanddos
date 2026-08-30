@@ -8,6 +8,12 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
 import os
+import sys
+from pathlib import Path
+
+# Add the django project directory (containing manage.py) to sys.path
+base_dir = Path(__file__).resolve().parent.parent
+sys.path.append(str(base_dir))
 
 from django.core.wsgi import get_wsgi_application
 
