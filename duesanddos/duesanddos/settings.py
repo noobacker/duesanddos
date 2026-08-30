@@ -32,12 +32,12 @@ DEBUG = True
 ALLOWED_HOSTS = ['*.vercel.app', 'localhost', '127.0.0.1']
 
 # ✅ Security for production
-DEBUG = False  # Set to False in production
+DEBUG = os.getenv("DEBUG", "False").strip().lower() == "true"
 
 # ✅ Static files configuration
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
 
 # ✅ If you have a static folder in your app:
 STATICFILES_DIRS = [
@@ -277,3 +277,11 @@ if USE_S3 and AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY and AWS_STORAGE_BUCKET
 else:
     MEDIA_URL = "/media/"
     MEDIA_ROOT = BASE_DIR / "media"
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage"
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
+        },
+    }

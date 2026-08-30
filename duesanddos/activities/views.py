@@ -97,15 +97,15 @@ def calendar_events_api(request):
         if start_str:
             start_date = datetime.fromisoformat(start_str.split("T")[0]).date()
         else:
-            start_date = date.today() - timedelta(days=60)
+            start_date = timezone.now().date() - timedelta(days=60)
 
         if end_str:
             end_date = datetime.fromisoformat(end_str.split("T")[0]).date()
         else:
-            end_date = date.today() + timedelta(days=60)
+            end_date = timezone.now().date() + timedelta(days=60)
     except (ValueError, IndexError):
-        start_date = date.today() - timedelta(days=60)
-        end_date = date.today() + timedelta(days=60)
+        start_date = timezone.now().date() - timedelta(days=60)
+        end_date = timezone.now().date() + timedelta(days=60)
 
     # Include both active chores AND completed one-time chores (is_active=False)
     chores = Chore.objects.filter(household=active_hh).prefetch_related("assignees")
