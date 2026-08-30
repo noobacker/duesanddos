@@ -1,0 +1,8 @@
+{
+  "buildCommand": "pip install -r requirements.txt && python manage.py collectstatic --noinput",
+  "outputDirectory": "staticfiles",
+  "framework": "python",
+  "env": {
+    "PYTHON_VERSION": "3.11"
+  }
+}
