@@ -46,6 +46,7 @@ dependencies = [
     "tomli==2.4.0",
     "typing-extensions==4.15.0",
     "urllib3==2.6.3",
+    "whitenoise==6.6.0",
 ]
 
 [tool.coverage.run]
