@@ -35,6 +35,10 @@ if _allowed_hosts_env:
 else:
     ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
 
+if os.getenv("VERCEL") == "1":
+    if '.vercel.app' not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append('.vercel.app')
+
 # ✅ Security for production
 DEBUG = os.getenv("DEBUG", "False").strip().lower() == "true"
 
