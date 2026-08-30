@@ -28,12 +28,22 @@ SECRET_KEY = "django-insecure-7u%$^$fnfqqo#c%gh!=)dtj82tm3!6uqoi4br&%+o3*_xdmuxh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "duesanddos-development.us-east-1.elasticbeanstalk.com",
-    "duesanddos.us-east-1.elasticbeanstalk.com",
-    "127.0.0.1",
-    "localhost",
+# ✅ Allow Vercel domain
+ALLOWED_HOSTS = ['*.vercel.app', 'localhost', '127.0.0.1']
+
+# ✅ Security for production
+DEBUG = False  # Set to False in production
+
+# ✅ Static files configuration
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+
+# ✅ If you have a static folder in your app:
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
 ]
+
 
 try:
     # We use a 1-second timeout so the app doesn't hang if it's not on AWS
