@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "duesanddos/duesanddos/wsgi.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.12"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "duesanddos/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "duesanddos/duesanddos/wsgi.py"
+    }
+  ]
+}
